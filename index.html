@@ -3,9 +3,12 @@
 
 <head>
   <title>Title of the document</title>
+  <script src="https://cdn.jsdelivr.net/npm/css-tree@1.1.2/dist/csstree.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
   <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
   <script type="module" type="application/javascript" src="script.js"></script>
-  <script type="application/javascript" src="hooks.js"></script>
+  <script type="application/javascript" src="parseBlendModes.js"></script>
+  <!-- <script type="application/javascript" src="processImages.js"></script> -->
   <link rel="stylesheet" href="css/interface.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
@@ -14,6 +17,7 @@
 
   <figure>
     <p>mix-blend-mode: normal;</p>
+    <div class="colored-rect"></div>
     <img class="normal"
       src="https://img-19.ccm2.net/uV_MR86--H0-ZK2MioHY7jYD07o=/1000x420/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg"
       alt="image de test">
