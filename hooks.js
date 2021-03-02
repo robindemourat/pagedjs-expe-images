@@ -49,13 +49,15 @@ const blackAndWhite = (ctx, image, displayedWidth, displayedHeight) => {
   return ctx;
 }
 const applyBlendMode = mode => (ctx, image, displayedWidth, displayedHeight) => {
-	ctx.globalAlpha = 0.5;
-	// ctx.drawImage(image, 0, 0, displayedWidth, displayedHeight);
-	ctx.globalCompositeOperation = mode;
-	
+	const prev = image.parentNode;
+	const background = window.getComputedStyle(prev, null).getPropertyValue('background-color');
+	ctx.globalCompositeOperation = 'source-over';
 	ctx.drawImage(image, 0, 0, displayedWidth, displayedHeight);
-	ctx.globalAlpha = 0;
-	ctx.fillRect(0, 0, displayedWidth / 2, displayedHeight);
+	ctx.globalCompositeOperation = mode;
+	ctx.fillStyle = background;
+	ctx.fillRect(0, 0, displayedWidth, displayedHeight);
+	ctx.globalCompositeOperation = 'overlay';
+	ctx.drawImage(image, 0, 0, displayedWidth, displayedHeight);
 
   return ctx;
 }
@@ -66,6 +68,7 @@ class MyHandler extends Paged.Handler {
 
 		afterRendered(_pages) {
 			parseImages(applyBlendMode('multiply'));
+			// parseImages(blackAndWhite);
 		}
 	}
 	Paged.registerHandlers(MyHandler);
